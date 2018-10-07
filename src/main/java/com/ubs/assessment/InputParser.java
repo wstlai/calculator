@@ -54,7 +54,7 @@ public class InputParser {
 
     private static List<Integer> parseNumbersString(String targetStr, Set<String> delimiterSet) {
         List<String> resultList = splitString(targetStr, delimiterSet);
-        return resultList.stream().map(s -> Integer.valueOf(s)).collect(Collectors.toList());
+        return resultList.stream().map(Integer::valueOf).collect(Collectors.toList());
     }
 
     private static List<String> splitString(String str, Set<String> delimiterSet) {
