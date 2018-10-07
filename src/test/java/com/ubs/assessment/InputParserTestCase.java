@@ -15,7 +15,7 @@ public enum InputParserTestCase {
     DIFF_DELIMITER_TWO_NUMBERS("//;\n1;2", Arrays.asList(1,2)),
     DIFF_DELIMITER_UNKNOWN_AMOUNT_NUMBERS("//;\n3;2;1;20;150;99;50;1000;1001;2000", Arrays.asList(3,2,1,20,150,99,50,1000,1001,2000)),
     DIFF_DELIMITER_NEW_LINE_DELIMITER("//;\n1\n2;3", Arrays.asList(1,2,3)),
-    DIFF_DELIMITER_ADJACENT_DELIMITERS("//;\n1,\n", NumberFormatException.class),
+    DIFF_DELIMITER_ADJACENT_DELIMITERS("//;\n1;\n", NumberFormatException.class),
     DELIMITER_ANY_LENGTH_EMPTY_STRING("//***\n", Arrays.asList(0)),
     DELIMITER_ANY_LENGTH_ONE_NUMBER("//***\n1", Arrays.asList(1)),
     DELIMITER_ANY_LENGTH_TWO_NUMBERS("//***\n1***2", Arrays.asList(1,2)),
