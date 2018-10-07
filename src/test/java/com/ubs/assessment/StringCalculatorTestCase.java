@@ -16,7 +16,7 @@ public enum StringCalculatorTestCase {
     DIFF_DELIMITER_TWO_NUMBERS("//;\n1;2", 3),
     DIFF_DELIMITER_UNKNOWN_AMOUNT_NUMBERS("//;\n3;2;1;20;150;99;50;1000", 1325),
     DIFF_DELIMITER_NEW_LINE_DELIMITER("//;\n1\n2;3", 6),
-    DIFF_DELIMITER_ADJACENT_DELIMITERS("//;\n1,\n", NumberFormatException.class),
+    DIFF_DELIMITER_ADJACENT_DELIMITERS("//;\n1;\n", NumberFormatException.class),
     DIFF_DELIMITER_NEGATIVE_NUMBERS_EXCEPTION_1("//;\n1;2;-3;4", IllegalArgumentException.class, "negatives not allowed [-3]"),
     DIFF_DELIMITER_NEGATIVE_NUMBERS_EXCEPTION_2("//;\n1;-2;-3;-4", IllegalArgumentException.class, "negatives not allowed [-2, -3, -4]"),
     DIFF_DELIMITER_EXCLUDE_BIG_NUMBER("//;\n999;1000;1001;2000", 1999),

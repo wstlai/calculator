@@ -53,19 +53,41 @@ public class InputParser {
     }
 
     private static List<Integer> parseNumbersString(String targetStr, Set<String> delimiterSet) {
-        List<String> splittedResultList = splitString(targetStr, delimiterSet);
-        return splittedResultList.stream().map(s -> Integer.valueOf(s)).collect(Collectors.toList());
+        List<String> resultList = splitString(targetStr, delimiterSet);
+        return resultList.stream().map(s -> Integer.valueOf(s)).collect(Collectors.toList());
     }
 
     private static List<String> splitString(String str, Set<String> delimiterSet) {
-        String pattern = delimiterSet.stream().map(Pattern::quote).collect(Collectors.joining("|"));
-        Scanner scanner = new Scanner(str);
-        scanner.useDelimiter(pattern);
+        String defaultDelimitedStr = convertToDefaultDelimiter(str, delimiterSet);
+        return splitString(defaultDelimitedStr, DEFAULT_DELIMITER);
+    }
+
+    private static String convertToDefaultDelimiter(String str, Set<String> delimiterSet) {
+        String[] delimitersToReplace = delimiterSet.stream().filter(s -> !s.equals(DEFAULT_DELIMITER)).toArray(String[]::new);
+
+        String[] replacements = new String[delimitersToReplace.length];
+        Arrays.fill(replacements, DEFAULT_DELIMITER);
+
+        return StringUtils.replaceEach(str, delimitersToReplace, replacements);
+    }
+
+    private static List<String> splitString(String str, String delimiter) {
+        if(str.length() < delimiter.length())
+            return Lists.newArrayList(str);
 
         ArrayList<String> resultList = Lists.newArrayList();
-        while (scanner.hasNext()) {
-            resultList.add(scanner.next());
+        int start = 0;
+        int end;
+
+        while((end = str.indexOf(delimiter, start)) != -1) {
+            resultList.add(str.substring(start, end));
+            start = end + delimiter.length();
         }
+
+        if(start < str.length()) {
+            resultList.add(str.substring(start, str.length()));
+        }
+
         return resultList;
     }
 }
