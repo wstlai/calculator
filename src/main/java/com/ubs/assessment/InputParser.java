@@ -90,4 +90,8 @@ public class InputParser {
 
         return resultList;
     }
+
+    public static testmethod() {
+        System.out.println("ok");
+    }
 }
