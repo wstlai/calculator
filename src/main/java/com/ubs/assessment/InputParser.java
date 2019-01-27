@@ -94,4 +94,8 @@ public class InputParser {
     public static testmethod() {
         System.out.println("ok");
     }
+
+    public static testmethod2() {
+        System.out.println("ok");
+    }
 }
